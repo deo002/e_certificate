@@ -1,13 +1,14 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
 
 function App() {
   return (
-    <div>
-      <header>
-        <p>
-          Frontend.
-        </p>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <Home />
+    </>
   );
 }
 
