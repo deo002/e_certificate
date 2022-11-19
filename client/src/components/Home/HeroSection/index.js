@@ -4,9 +4,13 @@ import './index.css';
 import PrimaryButton from '../PrimaryButton';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Navbar from "../../Navbar";
+import '../../../App.css'
 
 function HeroSection() {
   return (
+    <>
+    <Navbar />
     <div className='hero-container'>
       <div className='image-container'>
         <img src='/images/iiitn_3d_logo.png' alt='IIITN' />
@@ -18,6 +22,7 @@ function HeroSection() {
             <Col><PrimaryButton label="Companies" /></Col>
       </Row>
     </div>
+    </>
   );
 }
 

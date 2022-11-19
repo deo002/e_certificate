@@ -1,13 +1,24 @@
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Navbar from './components/Navbar';
 import Home from './components/Home';
+import Form from './components/Form';
+import Result from "./components/Result";
 
 function App() {
   return (
     <>
-      <Navbar />
-      <Home />
+<BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/form" element={<Form/>}/>
+        <Route path="/result" element={<Result/>}/>
+      </Routes>
+    </BrowserRouter>
     </>
   );
 }
