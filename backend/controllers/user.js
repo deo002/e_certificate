@@ -42,7 +42,7 @@ const login = async(req, res) => {
 
         res.status(200).json({
             success: true,
-            msg: "Registered successfully",
+            msg: "Logged in successfully",
             user: __user,
             token
         });
