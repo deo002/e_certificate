@@ -16,7 +16,7 @@ const addCertificateDetails = async(req, res) => {
 
 };
 
-modeule.exports = {
+module.exports = {
     addAdmin,
     revokeAdmin,
     getAdmins,

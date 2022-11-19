@@ -16,7 +16,7 @@ const isRequestValidated = (req, res, next) => {
     next();
 };
 
-modeule.exports = {
+module.exports = {
     addCertificateDetails,
     validateAddStudentsRequest,
     isRequestValidated

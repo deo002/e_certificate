@@ -28,7 +28,7 @@ const comparePassword = async (param1, param2) => {
     });
 };
 
-modeule.exports = {
+module.exports = {
     hashPassword,
     comparePassword
 };

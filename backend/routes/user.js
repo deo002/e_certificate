@@ -9,7 +9,7 @@ const {
     validateLoginRequest,
     isRequestValidated,
     validateRegisterRequest,
-} = require("../validators/auth");
+} = require("../validators/user");
 
 const router = express.Router();
 

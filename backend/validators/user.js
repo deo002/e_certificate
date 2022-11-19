@@ -43,7 +43,7 @@ const isRequestValidated = (req, res, next) => {
     next();
 };
 
-modeule.exports = {
+module.exports = {
     validateRegisterRequest,
     validateLoginRequest,
     isRequestValidated
