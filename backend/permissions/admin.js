@@ -22,6 +22,6 @@ const requireRoleAdmin = async(req, res, next) => {
     }
 };
 
-modeule.exports = {
+module.exports = {
     requireRoleAdmin
 };

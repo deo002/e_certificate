@@ -15,7 +15,7 @@ const userSchema = new Schema({
             validator: function(v) {
               return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(v);
             },
-            message: props => `${props.value} is not a email`
+            message: props => `${props.value} is not a valid email`
         }
     },
     password: {
@@ -32,7 +32,7 @@ const userSchema = new Schema({
     }
 }, { timestamps: true });
 
-userSchema.pre('save', async function() {    
+userSchema.pre('save', async function(next) {    
     var user = this;
 
     // only hash the password if it has been modified (or is new)

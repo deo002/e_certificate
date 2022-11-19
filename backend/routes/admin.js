@@ -19,14 +19,15 @@ const {
 
 const router = express.Router();
 
+
 router.get("/", requireSignin, requireRoleAdmin, getAdmins);
 
-router.put("/:id", requireSignin, requireRoleAdmin, addAdmin);
+router.put("/add", requireSignin, requireRoleAdmin, addAdmin);
 
-router.post("/", requireSignin, requireRoleAdmin, validateAddStudentsRequest, isRequestValidated, addStudents);
+router.post("/students", validateAddStudentsRequest, isRequestValidated, requireSignin, requireRoleAdmin, addStudents);
 
-router.post("/student/:id", requireSignin, requireRoleAdmin, validateCertificateRequest, isRequestValidated, addCertificateDetails);
+router.post("/student", validateCertificateRequest, isRequestValidated, requireSignin, requireRoleAdmin, addCertificateDetails);
 
-router.delete("/:id", requireSignin, requireRoleAdmin, revokeAdmin);
+router.put("/revoke", requireSignin, requireRoleAdmin, revokeAdmin);
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const { check, validationResult } = require('express-validator');
 
-const addCertificateDetails = [
+const validateCertificateRequest = [
 
 ];
 
@@ -16,8 +16,8 @@ const isRequestValidated = (req, res, next) => {
     next();
 };
 
-modeule.exports = {
-    addCertificateDetails,
+module.exports = {
+    validateCertificateRequest,
     validateAddStudentsRequest,
     isRequestValidated
 };

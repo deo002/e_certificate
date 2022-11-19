@@ -23,6 +23,6 @@ const requireSignin = (req, res, next) => {
     }
 };
 
-modeule.exports = {
+module.exports = {
     requireSignin
 };
