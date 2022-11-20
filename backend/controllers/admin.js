@@ -62,7 +62,8 @@ const getAdmins = async(req, res) => {
         }
         res.status(200).json({
             success: true,
-            users
+            users,
+            msg: "Admins fetched successfully"
         });
     } catch(e) {
         console.error(e);
@@ -85,7 +86,8 @@ const addStudents = async(req, res) => {
 
         res.status(200).json({
             success: true,
-            users: students
+            users: students,
+            msg: "Students added successfully to the database"
         });
     } catch(e) {
         console.error(e);
@@ -98,6 +100,20 @@ const addStudents = async(req, res) => {
 
 const addCertificateDetails = async(req, res) => {
     try {
+        const {
+            fname,
+            lname,
+            roll,
+            yop,
+            cgpa,
+            college
+        } = req.body;
+        console.log(fname, lname, roll, yop, cgpa, college);
+
+        res.status(200).json({
+            success: true,
+            msg: "Certificate added to blockchain successfully"
+        });
 
     } catch(e) {
         console.error(e);

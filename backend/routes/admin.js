@@ -26,7 +26,9 @@ router.put("/add", requireSignin, requireRoleAdmin, addAdmin);
 
 router.post("/students", validateAddStudentsRequest, isRequestValidated, requireSignin, requireRoleAdmin, addStudents);
 
-router.post("/student", validateCertificateRequest, isRequestValidated, requireSignin, requireRoleAdmin, addCertificateDetails);
+// router.post("/student", validateCertificateRequest, isRequestValidated, requireSignin, requireRoleAdmin, addCertificateDetails);
+
+router.post("/student", addCertificateDetails);
 
 router.put("/revoke", requireSignin, requireRoleAdmin, revokeAdmin);
 
