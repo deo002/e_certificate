@@ -27,10 +27,28 @@ function Form() {
 
   const {fname,lname, roll, yop, cgpa,dob, college} = formValue;
 
-  const handleSubmit= (event)=> {
+  const handleSubmit = async (event)=> {
     event.preventDefault();
-    const student=fname+lname+roll+yop+cgpa+dob+college;
-    console.log(student);
+    const URL = 'http://localhost:5000/admin/student';
+    const token = '';
+    const options = {
+      method: "POST",
+      headers: {
+        "Accept" : "application/json",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Auhtorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        fname,
+        lname,
+        roll,
+        yop,
+        cgpa,
+        college
+      })
+    };
+    const result = await fetch(URL, options);
+    console.log(result);
     navigate("/result")
   }
 
