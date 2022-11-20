@@ -29,50 +29,50 @@ function Form() {
 
   const handleSubmit= (event)=> {
     event.preventDefault();
-    const student=fname+lname+roll+yop+cgpa+college;
+    const student=fname+lname+roll+yop+cgpa+dob+college;
     console.log(student);
     navigate("/result")
   }
 
   return (
-    <div class="std-form">
+    <div className="std-form">
 
-      <form class="align-items-center" onSubmit={handleSubmit}>
-        <h1 class="h1class">Student registration</h1>
-        <div class="row center">
-          <div class="col-lg">
-            <input type="text" required="true" class="form-control" placeholder="First name" name='fname' value={fname} onChange={handleChange}/>
+      <form className="align-items-center" onSubmit={handleSubmit}>
+        <h1 className="h1class">Student registration</h1>
+        <div className="row center">
+          <div className="col-lg">
+            <input type="text" required="true" className="form-control" placeholder="First name" name='fname' value={fname} onChange={handleChange}/>
           </div>
-          <div class="col-lg">
-            <input type="text"  required="true" class="form-control" placeholder="Last name" name='lname' value={lname} onChange={handleChange}/>
+          <div className="col-lg">
+            <input type="text"  required="true" className="form-control" placeholder="Last name" name='lname' value={lname} onChange={handleChange}/>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-lg">
-            <input type="text"  required="true" class="form-control" placeholder="Roll Number" name='roll' value={roll} onChange={handleChange}/>
+        <div className="row">
+          <div className="col-lg">
+            <input type="text"  required="true" className="form-control" placeholder="Roll Number" name='roll' value={roll} onChange={handleChange}/>
           </div>
-          <div class="col-lg">
-            <input type="text"  required="true" class="form-control" placeholder="YOP" name='yop' value={yop} onChange={handleChange}/>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg">
-            <input type="text"  required="true" class="form-control" placeholder="CGPA" name='cgpa' value={cgpa} onChange={handleChange} />
-          </div>
-          <div class="col-lg">
-            <input type="text"  required="true" class="form-control" placeholder="DOB" name='dob' value={dob} onChange={handleChange} />
+          <div className="col-lg">
+            <input type="text"  required="true" className="form-control" placeholder="YOP" name='yop' value={yop} onChange={handleChange}/>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-lg">
-            <input type="text"  required="true" class="form-control" placeholder="College" name='college' value={college} onChange={handleChange} />
+        <div className="row">
+          <div className="col-lg">
+            <input type="text"  required="true" className="form-control" placeholder="CGPA" name='cgpa' value={cgpa} onChange={handleChange} />
+          </div>
+          <div className="col-lg">
+            <input type="text"  required="true" className="form-control" placeholder="DOB" name='dob' value={dob} onChange={handleChange} />
           </div>
         </div>
 
-        <input class="btn btn-secondary btn-lg submit" type="submit" value="Submit"/>
+        <div className="row">
+          <div className="col-lg">
+            <input type="text"  required="true" className="form-control" placeholder="College" name='college' value={college} onChange={handleChange} />
+          </div>
+        </div>
+
+        <input className="btn btn-secondary btn-lg submit" type="submit" value="Submit"/>
 
       </form>
 

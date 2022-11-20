@@ -4,9 +4,9 @@ import './index.css'
 function Result() {
   return (
         <div className="body">
-      <div class="card">
-      <div class="checkmark">
-        <i class="checkmark">✓</i>
+      <div className="card">
+      <div className="checkmark">
+        <i className="checkmark">✓</i>
       </div>
         <h1>Success</h1> 
         <p>Student successfully registered</p>
