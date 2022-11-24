@@ -48,6 +48,7 @@ function Form() {
       })
     };
     const result = await fetch(URL, options);
+    console.log(fname, lname, roll, yop, cgpa, college);
     console.log(result);
     navigate("/result")
   }

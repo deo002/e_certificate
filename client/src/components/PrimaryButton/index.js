@@ -3,6 +3,6 @@ import { Button } from 'react-bootstrap';
 
 export default function PrimaryButton(props) {
     return (
-        <Button variant="outline-info" size="lg">{props.label}</Button>
+        <Button variant={props.variant} size="lg" type={props.type} onClick={props.onClick} >{props.label}</Button>
     )
 }

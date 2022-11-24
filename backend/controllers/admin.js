@@ -19,7 +19,7 @@ const addAdmin = async(req, res) => {
         console.error(e);
         res.status(400).json({
             success: false,
-            msg: e
+            msg: e.message
         });
     }
 };
@@ -42,7 +42,7 @@ const revokeAdmin = async(req, res) => {
         console.error(e);
         res.status(400).json({
             success: false,
-            msg: e
+            msg: e.message
         });
     }
 };
@@ -69,7 +69,7 @@ const getAdmins = async(req, res) => {
         console.error(e);
         res.status(400).json({
             success: false,
-            msg: e
+            msg: e.message
         });
     }
 };
@@ -93,7 +93,7 @@ const addStudents = async(req, res) => {
         console.error(e);
         res.status(400).json({
             success: false,
-            msg: e
+            msg: e.message
         });
     }
 };
@@ -119,7 +119,7 @@ const addCertificateDetails = async(req, res) => {
         console.error(e);
         res.status(400).json({
             success: false,
-            msg: e
+            msg: e.message
         });
     }
 };
