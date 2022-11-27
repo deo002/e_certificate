@@ -1,5 +1,6 @@
 const { User } = require('../models/user');
 const { hashPassword } = require('../services/bcrypt.service');
+    
 
 const addAdmin = async(req, res) => {
     try {
@@ -106,9 +107,12 @@ const addCertificateDetails = async(req, res) => {
             roll,
             yop,
             cgpa,
-            college
+            college,
         } = req.body;
-        console.log(fname, lname, roll, yop, cgpa, college);
+         console.log(fname, lname, roll, yop, cgpa, college);
+
+        
+
 
         res.status(200).json({
             success: true,
