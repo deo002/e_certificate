@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "buffer": "^6.0.3",
+    "chai": "^4.3.6",
+    "chai-as-promised": "^7.1.1",
+    "web3": "^1.8.1"
+  }
+}

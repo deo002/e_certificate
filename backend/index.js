@@ -42,6 +42,10 @@ app.use('/admin', admin);
 
 const PORT = process.env.PORT || 5000;
 
+app.get('/', (req, res) => {
+  res.send("GET Request Called")
+})
+
 app.listen(PORT, () => {
     console.info(`Server started on port ${PORT}`);
 });
