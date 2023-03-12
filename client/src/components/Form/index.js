@@ -20,8 +20,6 @@ function Form() {
 
   const[account,setAccount]= useState(null);
 
-  const navigate = useNavigate();
-
   const [formValue, setFormValue] = useState({
     fname: "",
     lname: "",
@@ -37,8 +35,8 @@ function Form() {
 
       const provider = await detectEthereumProvider();
        const contract = await loadContract("Cert", provider);
-        contractFinal=contract;
-       //console.log(contract);
+       contractFinal=contract;
+       console.log(contract);
 
       if (provider) {
           provider.request({ method: "eth_requestAccounts"});
@@ -86,31 +84,19 @@ function Form() {
 
   const handleSubmit= async(event)=> {
     event.preventDefault();
-    const student=fname+lname+roll+yop+cgpa+college;
+    console.log('HI');
+    const result=await contractFinal.createCertificate(fname, lname, yop, cgpa, roll, {
+      from:account
+    });
 
-    const hash = await crypto.SHA256(fname).toString();
+    console.log(result);
 
-        //const {contract, web3}=web3Api;
-        //console.log(contractFinal);
+    if(result){
+      console.log("Certificate created successfully!");
+    }
+    else{
 
-         const result=await contractFinal.get(hash,{
-          from:account
-        });
-
-        console.log(result);
-
-        if(result){
-          console.log("Yes correct");
-        }
-        else{
-           await contractFinal.set(hash,fname,roll,lname,{
-              from:account
-            });
-
-            navigate("/result")
-        }
-   
-    
+    }
   }
 
   return (

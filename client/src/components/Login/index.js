@@ -5,6 +5,7 @@ import Input from '../Input';
 import FormComponent from '../FormComponent';
 import Heading from '../Heading';
 import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import { useForm } from 'react-hook-form';
 import PrimaryButton from '../PrimaryButton';
 import { Alert } from 'react-bootstrap';
@@ -42,24 +43,26 @@ export default function SignIn() {
   };
 
   return (
-    <FormComponent onSubmit={handleSubmit(onSubmit)}>
-      <Heading>Sign In</Heading>
-      <Alert variant="danger" show={!!err}>{err}</Alert>
-      <Col>
-        <Input
-          label="Email"
-          type="text"
-          error={errors.email}
-          hookForm={register('email')}
-        />
-        <Input
-          label="Password"
-          type="password"
-          error={errors.password}
-          hookForm={register('password')}
-        />
-      </Col>
-      <PrimaryButton state={loading} label="Submit" type="submit" variant="success" />
-    </FormComponent>
+    <div  className="text-center">
+      <FormComponent onSubmit={handleSubmit(onSubmit)}>
+          <Col>
+            <Heading>Sign In</Heading>
+            <Alert variant="danger" show={!!err}>{err}</Alert>
+            <Input
+              label="Email"
+              type="text"
+              error={errors.email}
+              hookForm={register('email')}
+            />
+            <Input
+              label="Password"
+              type="password"
+              error={errors.password}
+              hookForm={register('password')}
+            />  
+            <PrimaryButton state={loading} label="Submit" type="submit" variant="success" />
+          </Col>
+      </FormComponent>
+    </div>
   );
 }
