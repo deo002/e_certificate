@@ -2,7 +2,7 @@ import contract from "@truffle/contract";
 
 export const loadContract = async(name, provider) =>{
 
-    const res= await fetch(`/smart_contracts/contracts/${name}.json`)
+    const res= await fetch(`../components/contracts/${name}.json`)
 
     const Artifact = await res.json();
     const _contract = contract(Artifact);
@@ -10,6 +10,4 @@ export const loadContract = async(name, provider) =>{
 
     const deployedContract= await _contract.deployed();
     return deployedContract;
-
-    
 }

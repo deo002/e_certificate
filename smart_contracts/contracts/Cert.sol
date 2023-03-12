@@ -9,13 +9,15 @@ contract Cert {
         uint256 index;
     }
 
+    event Action(uint256 rollNo, string actionType, uint256 created);
+
     // certificates are mapped to roll numbers
     mapping(string => Certificate) private certificates;
 
     // helps us know if a particular key exists or not
     string[] private certificateKeys;
 
-    function studentALreadyExists(
+    function studentAlreadyExists(
         string memory rollNo
     ) internal view returns (bool) {
         if (certificateKeys.length == 0) return false;
@@ -34,7 +36,7 @@ contract Cert {
         require(bytes(lastName).length > 0, "Last Name cannot be empty");
         require(bytes(rollNo).length > 0, "Roll Number cannot be empty");
 
-        if (studentALreadyExists(rollNo)) revert("duplicate");
+        if (studentAlreadyExists(rollNo)) revert("duplicate");
         certificates[rollNo].firstName = firstName;
         certificates[rollNo].lastName = lastName;
         certificates[rollNo].yearOfPassing = yearOfPassing;
@@ -42,6 +44,12 @@ contract Cert {
 
         certificateKeys.push(rollNo);
         certificates[rollNo].index = certificateKeys.length - 1;
+
+        emit Action(
+            certificates[rollNo].index,
+            "POST CREATED",
+            block.timestamp
+        );
 
         return true;
     }
@@ -57,7 +65,7 @@ contract Cert {
         require(bytes(lastName).length > 0, "Last Name cannot be empty");
         require(bytes(rollNo).length > 0, "Roll Number cannot be empty");
 
-        if (!studentALreadyExists(rollNo)) revert("Student does not exist");
+        if (!studentAlreadyExists(rollNo)) revert("Student does not exist");
         certificates[rollNo].firstName = firstName;
         certificates[rollNo].lastName = lastName;
         certificates[rollNo].yearOfPassing = yearOfPassing;
@@ -69,7 +77,7 @@ contract Cert {
     function showCertificate(
         string memory rollNo
     ) external view returns (Certificate memory) {
-        if (!studentALreadyExists(rollNo)) revert("Student does not exist");
+        if (!studentAlreadyExists(rollNo)) revert("Student does not exist");
         Certificate memory c = certificates[rollNo];
         return c;
     }

@@ -1,24 +1,26 @@
-import {React ,useEffect,useState} from 'react';
-import { useNavigate  } from 'react-router-dom';
-import crypto from "crypto-js";
-import Web3 from 'web3';
-import detectEthereumProvider from '@metamask/detect-provider';
-import { loadContract } from "../../utils/load-contract";
+import {React, useState, useEffect} from 'react';
 import './index.css';
-
-let contractFinal;
-const admin=true;
-
+import { useAuth } from '../../contexts/AuthContext';
+import useMetaMask from '../../contexts/metamaskContext';
+import Web3 from 'web3';
+import Cert from '../contracts/Cert.json';
 
 function Form() {
 
-  const[web3Api, setWeb3Api]= useState({
-    provider:null,
-    web3:null,
-    contract:null,
-  });
+  const [contract, setContract] = useState();
+  const { currentUser } = useAuth();
+  const { connect, disconnect, isActive, account, shouldDisable } = useMetaMask()
 
-  const[account,setAccount]= useState(null);
+  useEffect(() => {
+    async function load() {
+      const web3 = new Web3(Web3.givenProvider || 'http://localhost:7545');
+      const networkId = await web3.eth.net.getId();
+      const contract = new web3.eth.Contract(Cert["abi"], Cert["networks"][networkId]["address"]);
+      setContract(contract);
+    }
+    
+    load();
+  }, []);
 
   const [formValue, setFormValue] = useState({
     fname: "",
@@ -30,47 +32,7 @@ function Form() {
     college: "",
   });
 
-  useEffect(() => {
-    const loadProvider= async() =>{
-
-      const provider = await detectEthereumProvider();
-       const contract = await loadContract("Cert", provider);
-       contractFinal=contract;
-       console.log(contract);
-
-      if (provider) {
-          provider.request({ method: "eth_requestAccounts"});
-        setWeb3Api({
-          web3:new Web3(provider),
-          provider,
-        });
-      }
-      
-      else 
-      {
-          console.error('Please install MetaMask!');
-      }
-    };
-    loadProvider();
-  }, []);
-
-  useEffect(()=>{
-    const {contract, web3}=web3Api;
-  })
-
-  useEffect(() => {
-    const getAccount = async() =>{
-      const account=await web3Api.web3.eth.getAccounts();
-
-      setAccount(account[0]);
-    }
-    web3Api.web3 && getAccount();
-
-  }, [web3Api.web3])
-  
-
   const handleChange = (event) => {
-    // console.log(web3Api.web3);
     const { name, value } = event.target;
     setFormValue((prevState) => {
       return {
@@ -82,26 +44,21 @@ function Form() {
 
   const {fname,lname, roll, yop, cgpa,dob, college} = formValue;
 
-  const handleSubmit= async(event)=> {
+  const handleSubmit = async(event)=> {
     event.preventDefault();
-    console.log('HI');
-    const result=await contractFinal.createCertificate(fname, lname, yop, cgpa, roll, {
-      from:account
-    });
-
-    console.log(result);
-
-    if(result){
-      console.log("Certificate created successfully!");
+    try {
+      const result = await contract.methods.createCertificate(fname, lname, yop, cgpa, roll).call({from: account});
+      // const res = await contract.methods.showCertificate("BT19CSE014").call({from: account});
+      console.log(result, 'Certificate added successfully.\n');
     }
-    else{
-
+    catch(e) {
+      console.log(e);
     }
   }
 
   return (
    <>
-    {admin==true && 
+    {currentUser.user.role === 'ADMIN' && 
       <div className="std-form">
 
 <form className="align-items-center" onSubmit={handleSubmit}>
@@ -147,9 +104,11 @@ function Form() {
 
     }
 
-    {admin==false && 
+    {currentUser.user.role !== 'ADMIN' && 
       <> 
-      <h1>You are not authenticated to view this page</h1></>
+        <h1>You are not authorized to view this page</h1>
+        
+      </>
     }
    </>
   )

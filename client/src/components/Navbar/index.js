@@ -2,10 +2,12 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useAuth } from '../../contexts/AuthContext';
+import useMetaMask from '../../contexts/metamaskContext';
 
 function NavigationBar() {
 
   const { signout, currentUser } = useAuth();
+  const { connect, disconnect, isActive, account, shouldDisable } = useMetaMask()
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -27,7 +29,11 @@ function NavigationBar() {
               </Nav>
           }
           <Nav>
-            <Nav.Link href="#connect-wallet">Connect Wallet</Nav.Link>
+          { isActive ? 
+            '' : 
+            <Nav.Link href="#connect-wallet" onClick={connect} disabled={shouldDisable}>Connect Wallet</Nav.Link>
+          }
+            
           </Nav>
         </Navbar.Collapse>
       </Container>
